@@ -1,0 +1,73 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: todo-nodejs-mongo
+metadata:
+  template: todo-nodejs-mongo@0.0.1-beta
+scripts:
+  preinit:
+    type: bash
+    location: path
+    path: './scripts/preinit.sh'
+  postinit:
+    type: bash
+    location: path
+    path: './scripts/postinit.sh'
+  preinfracreate:
+    type: bash
+    location: path
+    path: './scripts/preprovision.sh'
+  postinfracreate:
+    type: bash
+    location: path
+    path: './scripts/postprovision.sh'
+  predeploy:
+    type: bash
+    location: path
+    path: './scripts/predeploy.sh'
+  postdeploy:
+    type: bash
+    location: path
+    path: './scripts/postdeploy.sh'
+  preconfiglist:
+    type: bash
+    location: path
+    path: ./scripts/pre.sh
+  postconfiglist:
+    type: bash
+    location: path
+    path: ./scripts/post.sh
+  preversion:
+    type: powershell
+    location: path
+    path: ./scripts/pre.ps1
+  postversion:
+    type: powershell
+    location: path
+    path: ./scripts/post.ps1
+services:
+  web:
+    project: ./src/web
+    dist: build
+    language: js
+    host: appservice
+  api:
+    project: ./src/api
+    language: js
+    host: appservice
+    scripts:
+      prepackage:
+        type: bash
+        location: path
+        path: './scripts/prepackage.sh'
+      postpackage:
+        type: bash
+        location: path
+        path: './scripts/postpackage.sh'
+      predeploy:
+        type: bash
+        location: path
+        path: './scripts/predeploy.sh'
+      postdeploy:
+        type: bash
+        location: path
+        path: './scripts/postdeploy.sh'
